@@ -8,4 +8,4 @@ id_update_x1b1.m is the version of id algorithm that trained cell by cell and wi
 note: as for other auxiliary files, please refer to head comment. 
 
 recommend:
-recommended demonstration of identifier-based algorithm, please run id_update.m; recommended demonstration of RLS-PAA algorithm please run ls.m
+recommended demonstration of identifier-based algorithm, please run id_update.m (please read identifier_based.m first for understanding); recommended demonstration of RLS-PAA algorithm please run ls.m
