@@ -1,0 +1,1 @@
+smoothed data
