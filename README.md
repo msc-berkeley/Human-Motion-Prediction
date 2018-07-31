@@ -1,11 +1,28 @@
 # Human-Motion-Prediction
-ls.m is the original RLS PAA method ;
-ls_x1b1.m is RLS PAA tested on prediction pattern : (t,t+1,t+2) -> (t+1,t+2,t+3);
-identifier_based.m is the identifier-based algorithm tested on prediction pattern: (t,t+1,t+2) -> (t+3,t+4,t+5);
-id_update.m is the version of identifier_based.m that trained cell by cell and with time stamp (this part has been commented);
-id_update_x1b1.m is the version of id algorithm that trained cell by cell and with time stamp, note the prediction pattern is :(t,t+1,t+2) -> (t+1,t+2,t+3);
 
-note: as for other auxiliary files, please refer to head comment. 
+By Changliu Liu, Yujiao Cheng, Weiye Zhao
 
-recommend:
-recommended demonstration of identifier-based algorithm, please run id_update.m (please read identifier_based.m first for understanding); recommended demonstration of RLS-PAA algorithm please run ls.m
+### Introduction
+**Human-Motion-Prediction** is currently implemented with two different algorithms, RLS-PAA and Identifier-based algorithm.
+
+### Requirements: software
+
+0.	MATLAB 2014a or later.
+
+### Requirements: hardware
+
+CPU, Windows 7 or later, MAC OS.
+
+### Demo
+0.	Run `id_demo.m` to apply identifier-based algorithm on human motion data.
+0.	Run `rls_demo.m` to apply RLS-PAA algorithm on human motion data.
+
+### Training & Testing
+0. Both `id_demo.m` and `rls_demo.m` have training and testing part. Check both files for more details.
+    - **Note**: check opts. parameter in demo files for more parameter setting.
+0. Check other scripts in `./lib` for auxiliary function.
+
+**Note:** 
+- In all the experiments, training is performed on smoothed human motion data`.\data2\trainX&Y`, and testing is performed on smoothed human motion data`.\data2\TestX&Y`. Both training and testin data are stored in `.\data2\data.mat` or `.\data2\data_time.mat`, please refer to demo files for more details.
+- Results are demonstrations of id-based and RLS algorithm performance on human motion prediction by showing prediction error.
+- Running time is not recorded, but normally id-based algorithm are slower than RLS algorithm
