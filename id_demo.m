@@ -57,7 +57,7 @@ id_obj          = id(opts.y_dim, opts.U, opts.W, ...
                    'Gamma_Ug',  opts.Gamma_Ug);
 
 %% -------------------- TRAINING --------------------
-% RLS-PAA upgrating when new observation available
+% id-based upgrating when new observation available
 [obs_cell, obs_y_cell, obs_p_cell, num_cell] = time_extract(time_train, obs, trainY, plan);
 % fully leverage training data
 for c = 1:num_cell
@@ -127,7 +127,7 @@ id_obj_test     = id(opts.y_dim, opts.U, opts.W, ...
 
                
 %% -------------------- TESTING --------------------
-% RLS-PAA upgrating when new observation available
+% id-based upgrating when new observation available
 [obs_cell, obs_y_cell, obs_p_cell, num_cell] = time_extract(time_train, obs, TestY, plan);
 % fully leverage training data
 for c = 1:num_cell
