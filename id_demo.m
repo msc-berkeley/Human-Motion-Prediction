@@ -92,6 +92,7 @@ for c = 1:num_cell
 end
 
 % train error figure
+figure
 plot_err(error_train, opts.num, 'index', 'error_{train}_{id}');
 
 
@@ -128,7 +129,7 @@ id_obj_test     = id(opts.y_dim, opts.U, opts.W, ...
                
 %% -------------------- TESTING --------------------
 % id-based upgrating when new observation available
-[obs_cell, obs_y_cell, obs_p_cell, num_cell] = time_extract(time_train, obs, TestY, plan);
+[obs_cell, obs_y_cell, obs_p_cell, num_cell] = time_extract(time_test, obs, TestY, plan);
 % fully leverage training data
 for c = 1:num_cell
     id_obj_test.error = [];
@@ -162,4 +163,5 @@ for c = 1:num_cell
 end
 
 % test error figure
+figure
 plot_err(error_test, opts.num, 'index', 'error_{test}_{id}');
