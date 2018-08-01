@@ -1,6 +1,6 @@
 # Human-Motion-Prediction
 
-By Changliu Liu, Yujiao Cheng, Weiye Zhao
+By Yujiao Cheng, Weiye Zhao, Changliu Liu
 
 ### Introduction
 **Human-Motion-Prediction** is currently implemented with two different algorithms, RLS-PAA and Identifier-based algorithm.

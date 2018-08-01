@@ -11,6 +11,7 @@
 % --------------------------------------------------------
 clc;
 clear;
+addpath('class_path','lib')
 %% -------------------- CONFIG TRAINING --------------------
 str = 'data2/';% with .4 .6 combination
 load(strcat(str,'weights1.mat'));
