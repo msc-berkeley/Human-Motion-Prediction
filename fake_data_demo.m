@@ -10,6 +10,8 @@ function fake_data_demo()
 %   trial       -  noise added sampling trial number
 %   time_noise  -  add time noise to polynomial function (t + noise)
 %   axis_noise  -  add axis noise to polynomial function ((x,y,z) + noise)
+%   time_vary   -  1 denotes time varying-system; 0 denotes time-consist
+%   system
 %
 % Output
 %   dir(fake_data)  -  directory containing generated fake data + ground truth
