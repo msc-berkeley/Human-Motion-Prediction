@@ -31,7 +31,7 @@ CPU, Windows 7 or later, MAC OS.
 0. Check other scripts in `./lib` for auxiliary function.
 
 ### Results
-0. The results in terms of prediction error and prediction motion state of two algorithms on four datasets are stored in `./results/..`, please run `plot_err(error, instance number, 'y label', 'x label')` to see the graph for prediction error.
+0. The results in terms of prediction error and prediction motion state of two algorithms on four datasets are stored in `./results/..`, please run `plot_err(error, instance number, 'y label', 'x label')` to see the graph for prediction error after loading the error mat.
 
 **Note:** 
 - In all the experiments, online adaptation is performed on smoothed human motion data`.\data2\trainX&Y`. Both ready-for-adaptation `trainX` or `trainY` data are stored in `.\data2\data_time.mat` or `.\data2\cmu_data.mat`, which denote Kinect dataset and CMU mocap dataset respectively.
