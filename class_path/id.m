@@ -16,6 +16,7 @@ classdef id
       Gamma_Ux; % constant weighting matrix
       Gamma_Ug; % constant weighting matrix
       error = [];
+      id_state = [];
    end
    
    % construct method
@@ -69,13 +70,19 @@ classdef id
        end
        
        function [x_deri,v_deri,W_deri,Ux_deri,Ug_deri] = id_update_direction(obj, x_deri, x_tilde, g_tilde, layer1)
-           syms symbo;
            v_deri = (obj.k*obj.alpha + obj.gamma)*x_tilde + obj.beta1*sign(x_tilde);
            g_deri = (g_tilde)/obj.time_step;
-           sigma_deri_exp = gradient(1/(1 + exp(-symbo)), symbo);
-           sigma_deri = [];% derivative of the activation sigmoid function with respect to input layer1
+%            syms symbo;           
+%            sigma_deri_exp = gradient(1/(1 + exp(-symbo)), symbo);
+%            sigma_deri = [];% derivative of the activation sigmoid function with respect to input layer1
+%            for t = 1:size(layer1, 2)
+%                sigma_deri = [sigma_deri eval(subs(sigma_deri_exp, symbo, layer1(t)))];
+%            end
+
+           % central approximate gradient 
+           sigma_deri = [];
            for t = 1:size(layer1, 2)
-               sigma_deri = [sigma_deri eval(subs(sigma_deri_exp, symbo, layer1(t)))];
+               sigma_deri = [sigma_deri central_grad_id(layer1(t), 0.1)];
            end
            sigma_deri_M = []; % activation derivtion matrix
            for p = 1:size(sigma_deri, 2)
@@ -88,9 +95,10 @@ classdef id
        end
        
        function obj = id_update(obj,x_deri,v_deri,W_deri,Ux_deri,Ug_deri,x_tilde)
-           p_detect = peak_detect(x_tilde);
+           p_detect = peak_detect(x_tilde,0.2);
            if p_detect == 0
                obj.x_id = obj.x_id + obj.time_step*x_deri;
+               obj.id_state = [obj.id_state; obj.x_id];
                obj.v = obj.v + obj.time_step*v_deri;
                obj.W = obj.W + W_deri*obj.time_step;
                U_x = obj.U(1:obj.y_dim,:);
@@ -100,6 +108,7 @@ classdef id
                obj.U = [U_x; U_g; obj.U(obj.y_dim + 2,:)];
            else
                obj.x_id = obj.x_id + obj.time_step*x_deri;
+               obj.id_state = [obj.id_state; obj.x_id];
            end
        end
        

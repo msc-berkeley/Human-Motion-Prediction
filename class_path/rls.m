@@ -9,6 +9,7 @@ classdef rls
       X_theta = [];
       F_M = [];
       error = [];
+      rls_state = [];
    end
    
    % construct method
@@ -30,7 +31,7 @@ classdef rls
 %% init
            obj.W = opts.W;
            obj.lambda = opts.lambda;
-           obj.error = 100*ones(num, y_dim);
+           obj.error = 1*ones(num, y_dim);
            obj.F = 10000*eye(nn_dim);
            if opts.theta == 0
                obj.theta = zeros(nn_dim,y_dim);
@@ -58,6 +59,7 @@ classdef rls
 % ordinary method
    methods
        function obj = rls_update(obj, phi, i, y_dim, obs_Y)
+           row = [];
            for j = 1:y_dim
                obj.F = obj.F_M(41*(j-1)+1:41*j, 41*(j-1)+1:41*j);
                k = obj.F*phi'/(obj.lambda + phi*obj.F*phi');
@@ -65,7 +67,9 @@ classdef rls
                obj.F = (obj.F - k*phi*obj.F)/obj.lambda;
                obj.F_M(41*(j-1)+1:41*j, 41*(j-1)+1:41*j) = obj.F;
                obj.error(i,j) = obs_Y(i,j) - phi*obj.theta(:,j);
+               row = [row phi*obj.theta(:,j)];
            end
+           obj.rls_state = [obj.rls_state; row];
 % calculate variance of states
            Phi = phi;
            for k = 1:8
