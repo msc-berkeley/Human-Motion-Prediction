@@ -1,5 +1,5 @@
-%% modify error order to original: 
 function error_ori = modi_order(error)
+% modify error order to original: 
  num_order = size(error,1);
     error_ori = zeros(num_order, 9);
     j = 1;

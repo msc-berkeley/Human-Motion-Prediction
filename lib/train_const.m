@@ -1,5 +1,5 @@
-% construct training instance from observation 
 function [trainX, trainY, train_time] = train_const(sample)
+% construct training instance from observation 
     trainX = [];
     trainY = [];
     train_time = [];
